@@ -1,0 +1,196 @@
+from typing import List, Dict
+
+# Define types for our list of items in the cart and our dictionary of available items
+Cart = List[str]
+Items = Dict[str, float]
+
+# Initialize an empty cart and a dictionary of available items with their prices
+cart: Cart = []
+items: Items = {
+    "banana": 0.50,
+    "apple": 0.75,
+    "orange": 1.00,
+    "avocado": 1.50,
+    "mango": 1.25,
+    "pineapple": 2.00,
+    "strawberry": 0.25,
+    "blueberry": 0.50,
+    "raspberry": 0.75,
+    "blackberry": 1.00,
+    "watermelon": 3.00,
+    "canteloupe": 2.50,
+    "honeydew": 2.25,
+    "kiwi": 0.75,
+    "pear": 0.90,
+    "grapefruit": 1.25,
+    "lemon": 0.50,
+    "lime": 0.50,
+    "pomegranate": 3.50,
+    "peach": 1.00,
+    "plum": 0.75,
+    "nectarine": 1.00,
+    "apricot": 1.25,
+    "fig": 0.75,
+    "dates": 1.50,
+    "cherries": 2.00,
+    "grapes": 1.50,
+    "mushrooms": 1.00,
+    "spinach": 0.75,
+    "kale": 1.00,
+    "lettuce": 0.50,
+    "arugula": 0.75,
+    "cabbage": 1.00,
+    "broccoli": 1.50,
+    "asparagus": 2.00,
+    "carrots": 0.50,
+    "celery": 1.00,
+    "brussels sprouts": 1.25,
+    "cauliflower": 2.50,
+    "russet potato": 0.50,
+    "sweet potato": 0.75,
+    "yam": 1.00,
+    "corn": 0.25,
+    "peas": 0.50,
+    "green beans": 0.75,
+    "zucchini": 1.00,
+    "yellow squash": 1.00,
+    "tomato": 0.50,
+    "cucumber": 0.75,
+    "bell pepper": 1.00,
+    "jalapeno pepper": 1.25,
+    "habanero pepper": 1.75,
+    "onion": 0.25,
+    "garlic": 0.50,
+    "ginger": 1.00,
+    "turmeric": 1.25,
+    "basil": 0.75,
+    "parsley": 0.50,
+    "cilantro": 0.50,
+    "rosemary": 1.00,
+    "oregano": 0.75,
+    "thyme": 0.50,
+    "dill": 0.75,
+    "bay leaves": 0.50,
+    "cumin": 1.25,
+    "coriander": 1.00,
+    "paprika": 0.75,
+    "cayenne pepper": 1.00,
+    "mustard seeds": 1.50,
+    "fennel seeds": 1.00,
+    "caraway seeds": 1.25,
+    "sesame seeds": 0.75,
+    "chia seeds": 2.00,
+    "flax seeds": 1.50,
+    "sunflower seeds": 0.50,
+    "pumpkin seeds": 0.75,
+    "peanut butter": 3.50,
+    "almond butter": 4.00,
+    "cashew butter": 4.50,
+    "tahini": 2.50,
+    "chickpeas": 1.00,
+    "black beans": 0.75,
+    "kidney beans": 0.75,
+    "lentils": 1.25,
+    "tofu": 2.00,
+    "tempeh": 3.00,
+    "bread": 1.50,
+    "bagels": 2.00,
+    "pita": 1.75,
+    "tortillas": 2.50,
+    "rice": 1.00,
+    "quinoa": 2.00,
+    "oatmeal": 1.25,
+    "granola": 4.00,
+    "yogurt": 2.50,
+    "milk": 1.50,
+    "cheese": 2.00,
+    "eggs": 2.50,
+    "toothpaste": 3.00,
+    "shampoo": 4.50,
+    "conditioner": 4.50,
+    "soap": 2.00,
+    "lotion": 5.00,
+    "toilet paper": 1.00,
+    "paper towels": 2.00,
+    "laundry detergent": 6.00,
+    "dish soap": 2.50,
+    "cleaning spray": 4.00,
+}
+
+# Define a function to add an item to the cart
+def add_to_cart(item: str) -> None:
+    """Add an item to the cart."""
+    # Check if the item is available for purchase
+    if item in items:
+        # If it is, add it to the cart and give a success message
+        cart.append(item)
+        print(f"{item} added to cart.")
+    else:
+        # If it's not, give an error message and don't add it to the cart
+        print(f"Error: '{item}' is not available. Please choose another item.")
+
+# Define a function to remove an item from the cart
+def remove_from_cart(item: str) -> None:
+    """Remove an item from the cart."""
+    # Check if the item is in the cart
+    if item in cart:
+        # If it is, remove it from the cart and give a success message
+        cart.remove(item)
+        print(f"{item} removed from cart.")
+    else:
+        # If it's not, give an error message and don't remove anything from the cart
+        print(f"Error: '{item}' is not in your cart. Please choose another item.")
+
+# Define a function to view the contents of the cart
+def view_cart() -> None:
+    """View the items in the cart."""
+    # Check if there are any items in the cart
+    if cart:
+        # If there are, print them all out with a bullet point
+        print("Items in your cart:")
+        for item in cart:
+            print(f"- {item}")
+    else:
+        # If there aren't, say the cart is empty
+        print("Your cart is empty.")
+
+# Define a function to calculate the total cost of the items in the cart
+def calculate_total_cost() -> None:
+    """Calculate the total cost of items in the cart."""
+    # Use a list comprehension to get the price of each item in the cart from our dictionary of items,
+    # then add them all up with the built-in sum function
+    total_cost = sum(items[item] for item in cart)
+    # Print out the total cost with two decimal places
+    print(f"Total cost of items in your cart: ${total_cost:.2f}")
+
+# Main program loop
+while True:
+    # Ask the user what action they want to perform
+    action = input("Enter 'add', 'remove', 'view', 'total', or 'exit': ").lower()
+
+    # Perform the action based on what the user entered
+    if action == "add":
+        # Ask the user what item they want to add to the cart
+        item = input("Enter an item to add to your cart: ").lower()
+        # Call our add_to_cart function with the user's chosen item
+        add_to_cart(item)
+    elif action == "remove":
+        # Ask the user what item they want to remove from the cart
+        item = input("Enter an item to remove from your cart: ").lower()
+        # Call our remove_from_cart function with the user's chosen item
+        remove_from_cart(item)
+    elif action == "view":
+        # Call our view_cart function to show the contents of the cart
+        view_cart()
+    elif action == "total":
+        # Call our calculate_total_cost function to calculate and show the total cost of the items in the cart
+        calculate_total_cost()
+    elif action == "exit":
+        # End the program loop if the user types "exit"
+        break
+    else:
+        # If the user enters an invalid action, print an error message
+        print("Error: Invalid input. Please choose 'add', 'remove', 'view', 'total', or 'exit'.")
+
+# Say goodbye to the user when they're done shopping
+print("Thank you for shopping with us! Goodbye.")
